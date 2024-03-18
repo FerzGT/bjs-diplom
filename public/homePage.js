@@ -24,13 +24,13 @@ function updateFavorites(data) {
     moneyManager.updateUsersList(data);
 }
 
-let handler = (showFunc, errorBox, method, message) => data => method(data, response => {
+let handler = (showFunc, moneyManager, method, message) => data => method(data, response => {
     if (response.success) {
         showFunc(response.data);
         let fullMessage = response.data.created_at ? `${response.data.created_at}, ${response.data.login}: ` + message : message;
-        errorBox.error(response.success, fullMessage);
+        moneyManager.setMessage(response.success, fullMessage);
     } else {
-        errorBox.error(response.success, response.data);
+        moneyManager.setMessage(response.success, response.data);
     }
 });
 
