@@ -29,8 +29,6 @@ let handler = (showFunc, moneyManager, method, message) => data => method(data, 
         showFunc(response.data);
         let fullMessage = response.data.created_at ? `${response.data.created_at}, ${response.data.login}: ` + message : message;
         moneyManager.setMessage(response.success, fullMessage);
-    } else {
-        moneyManager.setMessage(response.success, response.data);
     }
 });
 
